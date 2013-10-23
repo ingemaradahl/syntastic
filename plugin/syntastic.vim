@@ -284,6 +284,9 @@ endfunction
 
 function! s:IgnoreFile(filename)
     let fname = fnamemodify(a:filename, ':p')
+    if expand(fname) != expand("%:p")
+        return 1
+    endif
     for p in g:syntastic_ignore_files
         if fname =~# p
             return 1
